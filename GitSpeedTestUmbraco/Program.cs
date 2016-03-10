@@ -14,76 +14,62 @@ namespace GitSpeedTestUmbraco
         static void Main(string[] args)
         {
             var workingDir = Path.Combine(Common.RootDir, "UmbracoSpeed");
-            File.Delete(Path.Combine(Common.RootDir, "UmbracoSpeed.txt"));
+            if (File.Exists(Common.LogPath))
+                File.Delete(Common.LogPath);
             using (new AwesomeStopwatch("downloading packages"))
             {
                 Common.DownloadFile(Common.GetUmbPackageUrl("7.3.0"), Common.GetUmbPath("7.3.0"));
                 Common.DownloadFile(Common.GetUmbPackageUrl("7.4.1"), Common.GetUmbPath("7.4.1"));
                 Common.DownloadFile(Common.GetCourierPackageUrl("2.52.3"), Common.GetCourierPath("2.52.3"));
             }
-            Console.WriteLine("s = shell, l = libgit2sharp, * libgit2sharp stage *, f = libgit2sharp specific files");
-            switch (Console.ReadLine())
+            while (true)
             {
-                case "s":
-                    using (new AwesomeStopwatch("Using Shell", "=== "))
-                    {
-                        Common.CleanUp(workingDir);
-                        InitUmbraco(workingDir);
-                        Common.CommitViaShell(workingDir);
-                        UpgradeUmbraco(workingDir);
-                        Common.CommitViaShell(workingDir);
-                        AddCourier(workingDir);
-                        Common.CommitViaShell(workingDir);
-                    }
-                    break;
-                case "l":
-                    using (new AwesomeStopwatch("Using LibGit2", "=== "))
-                    {
-                        Common.CleanUp(workingDir);
-                        InitUmbraco(workingDir);
-                        Common.CommitViaLibGit(workingDir);
-                        UpgradeUmbraco(workingDir);
-                        Common.CommitViaLibGit(workingDir);
-                        AddCourier(workingDir);
-                        Common.CommitViaLibGit(workingDir);
-                    }
-                    break;
-                case "*":
-                    using (new AwesomeStopwatch("Using LibGit2 stage *", "=== "))
-                    {
-                        Common.CleanUp(workingDir);
-                        InitUmbraco(workingDir);
-                        Common.CommitViaLibGitStageStar(workingDir);
-                        UpgradeUmbraco(workingDir);
-                        Common.CommitViaLibGitStageStar(workingDir);
-                        AddCourier(workingDir);
-                        Common.CommitViaLibGitStageStar(workingDir);
-                    }
-                    break;
-                case "f":
-                    using (new AwesomeStopwatch(", trueUsing LibGit2 for specific files", "=== "))
-                    {
-                        Common.CleanUp(workingDir);
-                        var files = InitUmbraco(workingDir);
-                        Common.CommitSpecificViaLibGit(workingDir, files);
-                        files = UpgradeUmbraco(workingDir);
-                        Common.CommitSpecificViaLibGit(workingDir, files);
-                        files = AddCourier(workingDir);
-                        Common.CommitSpecificViaLibGit(workingDir, files);
-                    }
-                    break;
-                default:
-                    break;
+                using (new AwesomeStopwatch("Using Shell", "=== "))
+                {
+                    Common.CleanUp(workingDir);
+                    InitUmbraco(workingDir);
+                    Common.CommitViaShell(workingDir);
+                    UpgradeUmbraco(workingDir);
+                    Common.CommitViaShell(workingDir);
+                    AddCourier(workingDir);
+                    Common.CommitViaShell(workingDir);
+                }
+                using (new AwesomeStopwatch("Using LibGit2", "=== "))
+                {
+                    Common.CleanUp(workingDir);
+                    InitUmbraco(workingDir);
+                    Common.CommitViaLibGit(workingDir);
+                    UpgradeUmbraco(workingDir);
+                    Common.CommitViaLibGit(workingDir);
+                    AddCourier(workingDir);
+                    Common.CommitViaLibGit(workingDir);
+                }
+                using (new AwesomeStopwatch("Using LibGit2 stage *", "=== "))
+                {
+                    Common.CleanUp(workingDir);
+                    InitUmbraco(workingDir);
+                    Common.CommitViaLibGitStageStar(workingDir);
+                    UpgradeUmbraco(workingDir);
+                    Common.CommitViaLibGitStageStar(workingDir);
+                    AddCourier(workingDir);
+                    Common.CommitViaLibGitStageStar(workingDir);
+                }
+                using (new AwesomeStopwatch(", trueUsing LibGit2 for specific files", "=== "))
+                {
+                    Common.CleanUp(workingDir);
+                    var files = InitUmbraco(workingDir);
+                    Common.CommitSpecificViaLibGit(workingDir, files);
+                    files = UpgradeUmbraco(workingDir);
+                    Common.CommitSpecificViaLibGit(workingDir, files);
+                    files = AddCourier(workingDir);
+                    Common.CommitSpecificViaLibGit(workingDir, files);
+                }
+                
             }
-
-
-
-
 
             Console.WriteLine("DONE");
             Console.ReadLine();
         }
-
 
         private static IEnumerable<string> InitUmbraco(string workingDir)
         {

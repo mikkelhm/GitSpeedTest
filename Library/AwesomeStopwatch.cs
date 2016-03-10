@@ -19,14 +19,14 @@ namespace Library
             _msg = msg;
             _prefix = prefix;
             Console.WriteLine(_prefix + "Starting " + msg);
-            File.AppendAllText(@"d:\temp\UmbracoSpeed.txt", _prefix + "Starting " + msg + Environment.NewLine);
+            File.AppendAllText(Common.LogPath, _prefix + "Starting " + msg + Environment.NewLine);
         }
 
         public void Dispose()
         {
             _stopwatch.Stop();
             Console.WriteLine(_prefix + "Done {0}: {1}", _msg, _stopwatch.Elapsed);
-            File.AppendAllText(@"d:\temp\UmbracoSpeed.txt", string.Format("{3}Done {0}: {1}{2}", _msg, _stopwatch.Elapsed, Environment.NewLine, _prefix));
+            File.AppendAllText(Common.LogPath, string.Format("{3}Done {0}: {1}{2}", _msg, _stopwatch.Elapsed, Environment.NewLine, _prefix));
         }
     }
 }

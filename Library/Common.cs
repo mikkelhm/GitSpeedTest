@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace Library
 {
     public class Common
     {
-        public static readonly string RootDir = @"d:\temp";
+        public static readonly string RootDir = ConfigurationManager.AppSettings["Root"];
+        public static string LogPath = Path.Combine(RootDir, "UmbracoSpeed.txt");
+
         public static void CleanUp(string workingDir)
         {
             using (new AwesomeStopwatch("Cleaning up"))
@@ -74,7 +77,7 @@ namespace Library
 
                     var author = new Signature("Umbraco as a Service", "support@umbraco.io",
                         new DateTimeOffset(DateTime.UtcNow));
-                    var commit = repository.Commit("Updates via LibGit2Sharp", author);
+                    var commit = repository.Commit("Updates via LibGit2Sharp", author, author);
                 }
             }
         }
@@ -89,7 +92,7 @@ namespace Library
 
                     var author = new Signature("Umbraco as a Service", "support@umbraco.io",
                         new DateTimeOffset(DateTime.UtcNow));
-                    var commit = repository.Commit("Updates via LibGit2Sharp stage *", author);
+                    var commit = repository.Commit("Updates via LibGit2Sharp stage *", author, author);
                 }
             }
         }
@@ -105,7 +108,7 @@ namespace Library
 
                     var author = new Signature("Umbraco as a Service", "support@umbraco.io",
                         new DateTimeOffset(DateTime.UtcNow));
-                    var commit = repository.Commit("Updates specific files via LibGit2Sharp", author);
+                    var commit = repository.Commit("Updates specific files via LibGit2Sharp", author, author);
                 }
             }
         }
@@ -130,7 +133,7 @@ namespace Library
                 {
                     var author = new Signature("Umbraco as a Service", "support@umbraco.io",
                         new DateTimeOffset(DateTime.UtcNow));
-                    var commit = repository.Commit("Updates via Shell out -A", author);
+                    var commit = repository.Commit("Updates via Shell out -A", author, author);
                 }
             }
         }
