@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitSpeedTestUmbraco", "GitSpeedTestUmbraco\GitSpeedTestUmbraco.csproj", "{97727AC8-9B75-4DA2-AF02-E96D0D154E33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{137DF1B1-754F-4046-BC53-B23B149099E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitSpeedTest", "GitSpeedTest\GitSpeedTest.csproj", "{5C3369E7-3421-428C-98F1-3525A635C02E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97727AC8-9B75-4DA2-AF02-E96D0D154E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97727AC8-9B75-4DA2-AF02-E96D0D154E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97727AC8-9B75-4DA2-AF02-E96D0D154E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97727AC8-9B75-4DA2-AF02-E96D0D154E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{137DF1B1-754F-4046-BC53-B23B149099E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{137DF1B1-754F-4046-BC53-B23B149099E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{137DF1B1-754F-4046-BC53-B23B149099E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{137DF1B1-754F-4046-BC53-B23B149099E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C3369E7-3421-428C-98F1-3525A635C02E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C3369E7-3421-428C-98F1-3525A635C02E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C3369E7-3421-428C-98F1-3525A635C02E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C3369E7-3421-428C-98F1-3525A635C02E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
